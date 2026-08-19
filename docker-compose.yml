@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # Container 1: FastAPI Web Gateway
+  api:
+    build: ./app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    depends_on:
+      - redis
+
+  # Container 2: Redis In-Memory Message Broker & Result Store
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  # Container 3: Celery AI Background Worker
+  worker:
+    build: ./app
+    command: celery -A tasks.celery_app worker --loglevel=info -c 1
+    volumes:
+      - ./app:/app
+    depends_on:
+      - redis
