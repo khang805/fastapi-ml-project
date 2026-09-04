@@ -14,3 +14,4 @@ resources:
   - worker-deployment.yaml
   - worker-hpa.yaml
   - cronjob-cleanup.yaml
+  - servicemonitor.yaml
