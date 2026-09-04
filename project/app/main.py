@@ -7,9 +7,8 @@ from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI(title="InferQueue API")
 
-# --- ADD THESE TWO LINES ---
+# Add Instrumentator to expose /metrics
 Instrumentator().instrument(app).expose(app)
-# ---------------------------
 
 class TextRequest(BaseModel):
     text: str
