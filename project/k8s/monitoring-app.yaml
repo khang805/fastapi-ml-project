@@ -20,6 +20,17 @@ spec:
         prometheus:
           prometheusSpec:
             serviceMonitorSelectorNilUsesHelmValues: false
+        
+        # --- OPTION 2: Target 127.0.0.1 for Minikube Control Plane ---
+        kubeControllerManager:
+          endpoints:
+            - 127.0.0.1
+        kubeScheduler:
+          endpoints:
+            - 127.0.0.1
+        kubeEtcd:
+          endpoints:
+            - 127.0.0.1
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
