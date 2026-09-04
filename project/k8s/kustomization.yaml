@@ -15,7 +15,3 @@ resources:
   - worker-hpa.yaml
   - cronjob-cleanup.yaml
   - ingress.yaml
-  - networkpolicy.yaml
-  - rbac.yaml
-  - pdb.yaml
-  - resource-governance.yaml
