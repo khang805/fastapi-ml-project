@@ -12,7 +12,7 @@ spec:
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: inferqueue
-  syncPolicy:
+  syncPolicy: 
     automated:
       prune: true
       selfHeal: true
