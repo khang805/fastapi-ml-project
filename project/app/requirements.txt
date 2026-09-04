@@ -6,3 +6,4 @@ celery
 redis
 transformers
 torch
+prometheus-fastapi-instrumentator

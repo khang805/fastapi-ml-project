@@ -3,8 +3,13 @@ from pydantic import BaseModel
 from celery.result import AsyncResult
 from celery_app import celery_app
 from tasks import run_sentiment_analysis
+from prometheus_fastapi_instrumentator import Instrumentator
 
 app = FastAPI(title="InferQueue API")
+
+# --- ADD THESE TWO LINES ---
+Instrumentator().instrument(app).expose(app)
+# ---------------------------
 
 class TextRequest(BaseModel):
     text: str
@@ -28,4 +33,3 @@ def get_result(task_id: str):
     elif result.status == "FAILURE":
         return {"status": "FAILURE", "error": str(result.info)}
     return {"status": result.status}
-
